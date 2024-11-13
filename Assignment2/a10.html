@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .weather-container {
+            margin-top: 20px;
+        }
+        .weather-icon {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+    <input type="text" id="city-name" placeholder="Enter city name" />
+    <button id="get-weather-btn">Get Weather</button>
+
+    <div class="weather-container" id="weather-container" style="display: none;">
+        <h3>Weather in <span id="city"></span></h3>
+        <img id="weather-icon" class="weather-icon" src="" alt="Weather Icon">
+        <p>Temperature: <span id="temperature"></span>°C</p>
+        <p>Description: <span id="description"></span></p>
+        <button id="refresh-btn">Refresh</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>

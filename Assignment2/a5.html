@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Validation</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+     body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+            margin: 100px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 60%;
+            border: 1px solid lightgray;
+            flex-direction: column;
+            display: flex;
+            margin: 10px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        input,
+        label {
+            padding: 10px 10px;
+            box-sizing: border-box;
+            margin: 0px 13px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0px 14px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: medium;
+            margin-left: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <form id="myForm">
+        <h2>Form Validation</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <span id="nameError" class="error"></span><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <span id="emailError" class="error"></span><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone">
+        <span id="phoneError" class="error"></span><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span id="passwordError" class="error"></span><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $("#myForm").on("submit", function(e) {
+                var name = $("#name").val().trim();
+                var email = $("#email").val().trim();
+                var phone = $("#phone").val().trim();
+                var password = $("#password").val().trim();
+                var isValid = true; 
+
+                $(".error").text("");
+
+                if (name === "") {
+                    e.preventDefault();
+                    $("#nameError").text("Name is required.");
+                    isValid = false;
+                }
+
+                var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+                if (email === "") {
+                    e.preventDefault();
+                    $("#emailError").text("Email is required.");
+                    isValid = false;
+                } else if (!emailPattern.test(email)) {
+                    e.preventDefault();
+                    $("#emailError").text("Please enter a valid email address.");
+                    isValid = false;
+                }
+
+                if (phone === "") {
+                    e.preventDefault();
+                    $("#phoneError").text("Phone number is required.");
+                    isValid = false;
+                } else if (!/^\d{10}$/.test(phone)) {
+                    e.preventDefault();
+                    $("#phoneError").text("Phone number must be 10 digits.");
+                    isValid = false;
+                }
+
+                if (password === "") {
+                    e.preventDefault();
+                    $("#passwordError").text("Password is required.");
+                    isValid = false;
+                } else if (password.length < 6) {
+                    e.preventDefault();
+                    $("#passwordError").text("Password must be at least 6 characters long.");
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert("Form submitted successfully!");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

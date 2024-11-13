@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        #slider {
+            width: 400px;
+            height: 300px;
+            margin: auto;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+        }
+
+        img.active {
+            display: block;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.518);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        h2{
+            text-align: center;
+        }
+    </style>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h2>Image Slider</h2>
+    <div id="slider">
+        <img src="i1.jpg" class="active" alt="Image 1">
+        <img src="i2.jpg" alt="Image 2">
+        <img src="i3.jpg" alt="Image 3">
+      
+        <button id="prev" class="nav-btn">Previous</button>
+        <button id="next" class="nav-btn">Next</button>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            var currentImageIndex = 0;
+            var images = $("#slider img");
+            var totalImages = images.length;
+
+            function showImage(index) {
+                images.removeClass('active').eq(index).addClass('active');
+            }
+
+            $("#next").click(function() {
+                currentImageIndex = (currentImageIndex + 1) % totalImages; 
+                showImage(currentImageIndex);
+            });
+
+            $("#prev").click(function() {
+                currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages; 
+                showImage(currentImageIndex);
+            });
+        });
+    </script>
+
+</body>
+</html>

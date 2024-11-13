@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Search</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="autocom.js"></script>
+    <style>
+        .autocomplete-suggestions {
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            z-index: 1000;
+            background-color: white;
+            width: 200px;
+        }
+
+        .autocomplete-suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-suggestions div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Autocomplete Search</h1>
+    <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+    <div id="suggestions" class="autocomplete-suggestions"></div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: medium;
+        margin: 100px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      form {
+        width: 60%;
+        border: 1px solid lightgray;
+        flex-direction: column;
+        display: flex;
+        margin: 10px auto;
+        border-radius: 20px;
+        background-color: aquamarine;
+      }
+
+      input,
+      label {
+        border-style: none;
+        padding: 10px 10px;
+        box-sizing: border-box;
+        margin: 0px 13px;
+        outline: none;
+        margin-bottom: 10px;
+        border-radius: 20px;
+      }
+      
+      input:focus {
+        border: 2px solid blue;
+        outline: none;
+      }
+
+      button {
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin: 0px 14px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+
+      .error {
+        color: red;
+        font-size: medium;
+        margin-left: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="myform">
+      <h2>Form Validation</h2>
+
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Enter name" />
+      <span id="name-error" class="error"></span>
+
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="Enter email" />
+      <span id="email-error" class="error"></span>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#myform").on("submit", function (event) {
+          event.preventDefault();
+
+          $("#name-error").text("");
+          $("#email-error").text("");
+
+          var name = $("#name").val().trim();
+          if (name === "") {
+            $("#name-error").text("Name is required!!");
+            return;
+          }
+
+          var email = $("#email").val().trim();
+          var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+          if (email === "") {
+            $("#email-error").text("Email is required!!!");
+            return;
+          } else if (!pattern.test(email)) {
+            $("#email-error").text("Please enter a valid email address!");
+            return;
+          }
+
+          alert("Name: " + name + "\nEmail: " + email);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Visibility</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        #myDiv {
+            margin-top: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #myDiv p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleButton">Toggle Div</button><br><br>
+
+    <div id="myDiv" style="display: none;">
+        <p>This is a toggled div element.</p>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#toggleButton").click(function(){
+                $("#myDiv").toggle(); 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian State and City Dropdown</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            width: 60%;
+            border: 1px solid lightgray;
+            flex-direction: column;
+            display: flex;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-left: 10px;
+            
+        }
+
+        select {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 98%;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        select:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+
+        option {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select State and City</h2>
+
+    <label for="states">State:</label>
+    <select id="states">
+        <option value="">Select a state</option>
+        <option value="gujarat">Gujarat</option>
+        <option value="maharashtra">Maharashtra</option>
+        <option value="tamilnadu">Tamil Nadu</option>
+    </select><br><br>
+
+    <label for="cities">City:</label>
+    <select id="cities">
+        <option value="">Select a city</option>
+    </select>
+
+    <script>
+        $(document).ready(function(){
+            var citiesByState = {
+                'gujarat': ['Ahmedabad', 'Surat', 'Vadodara'],
+                'maharashtra': ['Mumbai', 'Pune', 'Nagpur'],
+                'tamilnadu': ['Chennai', 'Coimbatore', 'Madurai']
+            };
+
+            $("#states").change(function(){
+                var selectedState = $(this).val();
+                var citiesDropdown = $("#cities");
+                citiesDropdown.empty(); 
+                
+                citiesDropdown.append('<option value="">Select a city</option>');
+                
+                if(selectedState) {
+                    var cities = citiesByState[selectedState];
+                    $.each(cities, function(index, city) {
+                        citiesDropdown.append('<option value="' + city.toLowerCase() + '">' + city + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
